@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import QuestionForm
 from .models import QAEntry
+from .groq_service import get_ai_answer
 
 
 def home(request):
@@ -39,11 +40,13 @@ def register_user(request):
 
 
 def login_user(request):
+
     error = None
-    # Respect `next` parameter so users return to protected pages after login
-    next_url = request.POST.get('next') or request.GET.get('next') or None
+
+    next_url = request.POST.get("next") or request.GET.get("next")
 
     if request.method == "POST":
+
         username = request.POST.get("username")
         password = request.POST.get("password")
 
@@ -59,7 +62,14 @@ def login_user(request):
 
         error = "Invalid username or password"
 
-    return render(request, "login.html", {"error": error, "next": next_url})
+    return render(
+        request,
+        "login.html",
+        {
+            "error": error,
+            "next": next_url
+        }
+    )
 
 
 def logout_user(request):
@@ -78,21 +88,38 @@ def ask_question(request):
 
             question = form.cleaned_data["question"]
 
-            QAEntry.objects.create(
-                user=request.user,
-                question_text=question,
-                answer_text="Pending",
-                plugin_source="Manual"
-            )
+            try:
 
-            return render(
-                request,
-                "ask_question.html",
-                {
-                    "form": QuestionForm(),
-                    "success": True
-                }
-            )
+                answer = get_ai_answer(question)
+
+                QAEntry.objects.create(
+                    user=request.user,
+                    question_text=question,
+                    answer_text=answer,
+                    plugin_source="Groq"
+                )
+
+                return render(
+                    request,
+                    "ask_question.html",
+                    {
+                        "form": QuestionForm(),
+                        "question": question,
+                        "answer": answer,
+                        "success": True
+                    }
+                )
+
+            except Exception as e:
+
+                return render(
+                    request,
+                    "ask_question.html",
+                    {
+                        "form": form,
+                        "error": str(e)
+                    }
+                )
 
     else:
         form = QuestionForm()
@@ -104,4 +131,3 @@ def ask_question(request):
             "form": form
         }
     )
-

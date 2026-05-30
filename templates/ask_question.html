@@ -10,23 +10,29 @@
 <form method="POST">
     {% csrf_token %}
 
-    <textarea
-        name="question"
-        rows="5"
-        cols="50"
-        placeholder="Ask about transformers, motors, generators..."
-    ></textarea>
-
-    <br><br>
+    {{ form.as_p }}
 
     <button type="submit">
         Get Answer
     </button>
-
 </form>
 
-{% if success %}
-    <p style="color:green;">Your question was submitted successfully.</p>
+{% if answer %}
+
+<hr>
+
+<h3>Your Question</h3>
+<p>{{ question }}</p>
+
+<h3>AI Answer</h3>
+<p>{{ answer }}</p>
+
+{% endif %}
+
+{% if error %}
+<p style="color:red;">
+    {{ error }}
+</p>
 {% endif %}
 
 </body>
