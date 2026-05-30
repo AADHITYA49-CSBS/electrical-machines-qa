@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Electrical Machines Q&A</title>
+</head>
+<body>
+
+<h1>Electrical Machines Q&A Platform</h1>
+
+{% if user.is_authenticated %}
+    <h3>Welcome {{ user.username }}</h3>
+    <a href="/logout/">Logout</a>
+{% else %}
+    <a href="/register/">Register</a>
+    <br><br>
+    <a href="/login/">Login</a>
+{% endif %}
+
+</body>
+</html>
