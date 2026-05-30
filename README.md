@@ -1,5 +1,16 @@
 # ElectraMind AI
 
+AI-Powered Electrical Machines Learning Assistant
+
+## Live Demo
+http://172.201.217.101
+
+## GitHub Repository
+https://github.com/AADHITYA49-CSBS/electrical-machines-qa
+
+
+# ElectraMind AI
+
 An AI-powered Electrical Machines Question Answering Platform built using Django, MySQL, and Groq AI.
 
 The application allows users to register, log in securely, ask questions related to electrical machines, receive AI-generated answers, and maintain a history of previous questions and responses.
