@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ask Question</title>
+</head>
+<body>
+
+<h2>Ask Electrical Machine Question</h2>
+
+{% if success %}
+<p>Question Saved Successfully!</p>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">
+        Submit
+    </button>
+</form>
+
+<br>
+
+<a href="/">Home</a>
+
+</body>
+</html>
+
