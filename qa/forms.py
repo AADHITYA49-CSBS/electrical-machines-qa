@@ -6,7 +6,9 @@ class QuestionForm(forms.Form):
         widget=forms.Textarea(
             attrs={
                 "rows": 5,
-                "placeholder": "Ask about electrical machines..."
+                "placeholder": "Ask about transformers, motors, generators, alternators...",
+                "class": "form-control form-control-lg",
+                "aria-label": "Ask ElectraMind AI"
             }
         )
     )

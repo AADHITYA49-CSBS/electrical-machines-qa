@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %}Ask Question — VoltieAI{% endblock %}
+{% block title %}Ask ElectraMind AI — ElectraMind AI{% endblock %}
 
+{% load markdown_extras %}
 {% block content %}
     <div class="row">
         <div class="col-12 col-md-8 mx-auto">
             <div class="glass p-4">
-                <h4 class="mb-3">Ask Electrical Machines Question</h4>
+                <h4 class="mb-3">Ask ElectraMind AI</h4>
 
                 <form method="POST">
                     {% csrf_token %}
@@ -32,7 +33,7 @@
                         </div>
 
                         <div class="chat-message ai mb-3">
-                            <div class="msg">{{ answer }}</div>
+                            <div class="msg answer-content">{{ answer|markdown_to_html }}</div>
                             <div class="meta small text-muted">AI {% if plugin_source %}<span class="badge bg-info text-dark ms-2">{{ plugin_source }}</span>{% endif %} • just now</div>
                         </div>
                     </div>
