@@ -16,8 +16,8 @@
                     </div>
 
                     <div class="d-flex gap-2">
-                        <button class="btn btn-gradient">Get AI Answer</button>
-                        <a class="btn btn-outline-light" href="{% url 'home' %}">Cancel</a>
+                        <button id="askBtn" class="btn btn-modern">Get AI Answer</button>
+                        <a class="btn btn-outline-soft" href="{% url 'home' %}">Cancel</a>
                     </div>
                 </form>
 
@@ -44,4 +44,17 @@
             </div>
         </div>
     </div>
+    <script>
+        // Show a subtle loading state on the button after submit
+        (function(){
+            const form = document.querySelector('form[method="POST"]');
+            const btn = document.getElementById('askBtn');
+            if(form && btn){
+                form.addEventListener('submit', ()=>{
+                    btn.disabled = true;
+                    btn.textContent = 'Thinking...';
+                });
+            }
+        })();
+    </script>
 {% endblock %}

@@ -144,3 +144,17 @@ def ask_question(request):
             "form": form
         }
     )
+
+
+@login_required
+def history_view(request):
+    history = QAEntry.objects.filter(
+        user=request.user
+    ).order_by('-created_at')
+
+    # Optional: simple search by query param 'q'
+    q = request.GET.get('q')
+    if q:
+        history = history.filter(question_text__icontains=q)
+
+    return render(request, 'history.html', {'entries': history})

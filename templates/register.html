@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}Register — VoltieAI{% endblock %}
+{% block title %}Register — ElectraMind AI{% endblock %}
 
 {% block content %}
     <div class="row justify-content-center">
         <div class="col-12 col-sm-10 col-md-6 col-lg-4">
             <div class="glass p-4 mt-5">
-                <h3 class="mb-3 text-center">Create an account</h3>
+                <h3 class="mb-3 text-center">Create your ElectraMind account</h3>
 
                 {% if error %}
                     <div class="alert alert-danger">{{ error }}</div>
@@ -26,12 +26,12 @@
                     </div>
 
                     <div class="d-grid">
-                        <button class="btn btn-gradient">Register</button>
+                        <button class="btn btn-modern">Create account</button>
                     </div>
                 </form>
 
                 <div class="mt-3 text-center small text-muted">
-                    Already have an account? <a href="{% url 'login' %}">Login</a>
+                    Already have an account? <a href="{% url 'login' %}">Sign in</a>
                 </div>
             </div>
         </div>

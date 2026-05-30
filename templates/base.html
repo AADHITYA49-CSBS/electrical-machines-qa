@@ -19,7 +19,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark nav-glass py-2">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="{% url 'home' %}">
-          <span class="brand-logo">Voltie<span class="brand-accent">AI</span></span>
+          <span class="brand-logo">ElectraMind <span class="brand-accent">AI</span></span>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,7 @@
             <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
             {% if user.is_authenticated %}
               <li class="nav-item"><a class="nav-link" href="{% url 'ask_question' %}">Ask Question</a></li>
-              <li class="nav-item"><a class="nav-link" href="/history/">History</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'history' %}">History</a></li>
               <li class="nav-item ms-2"><a class="btn btn-gradient" href="{% url 'logout' %}">Logout</a></li>
             {% else %}
               <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
